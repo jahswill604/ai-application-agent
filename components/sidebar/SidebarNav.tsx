@@ -56,14 +56,14 @@ export default function SidebarNav({ isCollapsed = false, onItemClick }: Sidebar
             key={item.href}
             href={item.href}
             onClick={onItemClick}
-            className={`flex items-center rounded-xl text-base font-semibold transition-all duration-200 group border-l-3 ${
+            className={`flex items-center rounded-xl text-lg font-semibold transition-all duration-200 group border-l-3 ${
               isActive
                 ? 'bg-primary/10 text-primary border-primary shadow-[inset_0_1px_1px_rgba(255,255,255,0.05)]'
                 : 'text-zinc-400 hover:text-zinc-200 hover:bg-white/[0.03] border-transparent'
             } ${
               isCollapsed
                 ? 'px-5 py-4 gap-4 w-full h-auto md:justify-center md:p-3 md:w-12 md:h-12 md:mx-auto md:border-l-0 md:border-t-3 md:border-r-0'
-                : 'gap-4 px-5 py-4'
+                : 'gap-4 px-5 py-5'
             }`}
             title={isCollapsed ? item.label : undefined}
           >
@@ -71,7 +71,7 @@ export default function SidebarNav({ isCollapsed = false, onItemClick }: Sidebar
               className={`transition-colors duration-200 flex-shrink-0 ${
                 isActive ? 'text-primary' : 'text-zinc-500 group-hover:text-zinc-300'
               }`}
-              size={20}
+              size={24}
             />
             <span className={`truncate ${isCollapsed ? 'md:hidden' : ''}`}>{item.label}</span>
           </Link>

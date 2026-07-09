@@ -1,6 +1,7 @@
 import { NextResponse } from 'next/server'
 import { type NextRequest } from 'next/server'
 import { createClient } from '@/lib/supabase/server'
+import { redirect } from 'next/navigation'
 
 /**
  * OAuth callback handler.
@@ -8,24 +9,43 @@ import { createClient } from '@/lib/supabase/server'
  * Also handles password reset tokens (type=recovery).
  */
 export async function GET(request: NextRequest) {
+  console.log('--- Auth Callback Initiated ---')
   const { searchParams, origin } = new URL(request.url)
   const code = searchParams.get('code')
   const type = searchParams.get('type')
   const next = searchParams.get('next') ?? '/dashboard'
 
-  if (code) {
-    const supabase = await createClient()
-    const { error } = await supabase.auth.exchangeCodeForSession(code)
+  console.log(`URL: ${request.url}`)
+  console.log(`Code: ${code ? 'Present' : 'Missing'}, Type: ${type}, Next: ${next}`)
 
-    if (!error) {
+  if (code) {
+    try {
+      const supabase = await createClient()
+      console.log('Supabase client created successfully')
+      
+      const { data, error } = await supabase.auth.exchangeCodeForSession(code)
+      if (error) {
+        console.error('exchangeCodeForSession error:', error.message)
+        throw error
+      }
+      
+      console.log('Session exchanged successfully. User ID:', data.user?.id)
+
       // For password reset flows, redirect to the reset page
       if (type === 'recovery') {
-        return NextResponse.redirect(`${origin}/reset-password`)
+        console.log('Redirecting to reset-password')
+        return redirect(`${origin}/reset-password`)
       }
-      return NextResponse.redirect(`${origin}${next}`)
+      
+      console.log(`Redirecting to: ${origin}${next}`)
+      return redirect(`${origin}${next}`)
+    } catch (err: any) {
+      console.error('Exception caught in auth callback exchange:', err?.message || err)
+      return redirect(`${origin}/?error=auth_callback_failed&msg=${encodeURIComponent(err?.message || 'unknown')}`)
     }
   }
 
-  // If code exchange fails, redirect to sign-in with an error
-  return NextResponse.redirect(`${origin}/?error=auth_callback_failed`)
+  console.log('No code found, redirecting to home')
+  return redirect(`${origin}/?error=auth_callback_failed`)
 }
+

@@ -1,33 +1,74 @@
 import React from 'react'
-import { UserIcon } from '@/components/icons'
+import { redirect } from 'next/navigation'
+import { createClient } from '@/lib/supabase/server'
+import ProfileEditor from './ProfileEditor'
+import ProfileCompletenessCard from '@/components/profile/ProfileCompletenessCard'
+import { ExtractedProfile } from '@/types/profile'
 
 export const metadata = {
   title: 'Profile — AI Application Agent',
+  description: 'Manage your professional profile details.',
 }
 
-export default function ProfilePage() {
-  return (
-    <div className="space-y-6">
-      {/* Header */}
-      <div>
-        <h1 className="text-2xl font-bold tracking-tight text-white flex items-center gap-3">
-          <UserIcon size={24} className="text-primary" />
-          Profile
-        </h1>
-        <p className="text-sm text-zinc-500 mt-1">
-          Manage your personal details, professional history, and credentials.
-        </p>
-      </div>
+export default async function ProfilePage() {
+  const supabase = await createClient()
 
-      {/* Placeholder card */}
-      <div className="border border-white/[0.04] bg-white/[0.01] rounded-3xl p-10 text-center backdrop-blur-md">
-        <div className="mx-auto flex items-center justify-center w-12 h-12 rounded-xl bg-white/[0.02] border border-white/[0.06] text-zinc-500 mb-4">
-          <UserIcon size={22} />
-        </div>
-        <h3 className="text-base font-semibold text-zinc-200">Profile Section Placeholder</h3>
-        <p className="text-xs text-zinc-500 mt-1 max-w-xs mx-auto">
-          This area will contain fields for personal profile management, bio, experience level, and billing plan settings.
-        </p>
+  // 1. Authenticate user
+  const {
+    data: { user },
+    error: userError,
+  } = await supabase.auth.getUser()
+
+  if (userError || !user) {
+    redirect('/')
+  }
+
+  // 2. Fetch profile from database
+  const { data: profile, error: profileError } = await supabase
+    .from('profiles')
+    .select('*')
+    .eq('id', user.id)
+    .single()
+
+  if (profileError || !profile) {
+    // If no profile, they must onboarding first
+    redirect('/onboarding/resume-upload')
+  }
+
+  // Helper to parse double stringified or empty jsonb values
+  const parseJsonbArray = (val: any): any[] => {
+    if (!val) return []
+    if (Array.isArray(val)) return val
+    try {
+      const parsed = typeof val === 'string' ? JSON.parse(val) : val
+      return Array.isArray(parsed) ? parsed : []
+    } catch {
+      return []
+    }
+  }
+
+  const initialProfile: ExtractedProfile = {
+    full_name: profile.full_name || '',
+    headline: profile.headline || '',
+    email: profile.email || profile.email || '',
+    phone: profile.phone || '',
+    location: profile.location || '',
+    summary: profile.summary || '',
+    skills: parseJsonbArray(profile.skills),
+    work_experience: parseJsonbArray(profile.work_experience),
+    education: parseJsonbArray(profile.education),
+    projects: parseJsonbArray(profile.projects),
+    certifications: parseJsonbArray(profile.certifications),
+    contact_details: profile.contact_details || {},
+  }
+
+  return (
+    <div className="grid grid-cols-1 lg:grid-cols-[360px_1fr] gap-6 items-start">
+      <div className="lg:self-start">
+        <ProfileCompletenessCard profile={initialProfile} />
+      </div>
+      <div>
+        <ProfileEditor initialProfile={initialProfile} />
       </div>
     </div>
   )

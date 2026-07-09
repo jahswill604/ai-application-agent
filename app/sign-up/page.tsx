@@ -110,19 +110,19 @@ export default function SignUpPage() {
 
       {/* Right side - Form */}
       <div className="w-full lg:w-1/2 flex items-center justify-center bg-white h-screen overflow-y-auto py-12">
-        <div className="w-full max-w-[420px] mx-auto flex flex-col justify-center px-8 lg:px-10">
+        <div className="w-full max-w-[540px] mx-auto flex flex-col justify-center px-8 lg:px-12">
           {success ? (
             <div className="text-center">
               <div className="w-16 h-16 bg-primary/10 border border-primary/20 text-primary flex items-center justify-center rounded-full mx-auto mb-6 text-[28px] font-bold">
                 ✓
               </div>
-              <h2 className="text-[28px] font-bold text-gray-900 tracking-tight mb-2">Check your email</h2>
-              <p className="text-gray-500 text-[14px] leading-relaxed mb-8">
+              <h2 className="text-[36px] font-bold text-gray-900 tracking-tight mb-2">Check your email</h2>
+              <p className="text-gray-500 text-[16px] leading-relaxed mb-8">
                 We sent a confirmation link to <strong className="text-gray-900 font-semibold">{email}</strong>. Click it to activate your account.
               </p>
               <Link
                 href="/"
-                className="w-full block py-2.5 px-4 bg-[#0a0a0a] hover:bg-[#1a1a1a] text-white text-[14px] font-medium rounded-lg transition-colors text-center"
+                className="w-full block py-3.5 px-4 bg-[#0a0a0a] hover:bg-[#1a1a1a] text-white text-[16px] font-medium rounded-lg transition-colors text-center"
               >
                 Back to sign in
               </Link>
@@ -130,10 +130,10 @@ export default function SignUpPage() {
           ) : (
             <>
               <div className="mb-6">
-                <h1 className="text-[28px] font-bold text-gray-900 tracking-tight mb-1">
+                <h1 className="text-[36px] font-bold text-gray-900 tracking-tight mb-1">
                   Create your account
                 </h1>
-                <p className="text-gray-500 text-[14px]">
+                <p className="text-gray-500 text-[16px]">
                   Start using AI Application Agent today — it&apos;s free.
                 </p>
               </div>
@@ -147,7 +147,7 @@ export default function SignUpPage() {
               <button
                 onClick={handleGoogleSignUp}
                 disabled={loading || googleLoading}
-                className="w-full flex items-center justify-center gap-2.5 px-4 py-2.5 border border-gray-200 rounded-lg text-[14px] font-medium text-gray-700 bg-white hover:bg-gray-50 transition-colors disabled:opacity-50"
+                className="w-full flex items-center justify-center gap-2.5 px-4 py-3.5 border border-gray-200 rounded-lg text-[16px] font-medium text-gray-700 bg-white hover:bg-gray-50 transition-colors disabled:opacity-50"
               >
                 <svg className="w-4 h-4" viewBox="0 0 24 24">
                   <path fill="#4285F4" d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z" />
@@ -158,22 +158,22 @@ export default function SignUpPage() {
                 {googleLoading ? 'Redirecting...' : 'Continue with Google'}
               </button>
 
-              <div className="flex items-center my-5">
+              <div className="flex items-center my-6">
                 <div className="flex-1 border-t border-gray-200"></div>
-                <span className="px-3 text-[11px] text-gray-400 bg-white">or sign up with email</span>
+                <span className="px-3 text-[13px] text-gray-400 bg-white">or sign up with email</span>
                 <div className="flex-1 border-t border-gray-200"></div>
               </div>
 
-              <form onSubmit={handleSignUp} className="space-y-4" noValidate>
+              <form onSubmit={handleSignUp} className="space-y-6" noValidate>
                 <div>
-                  <label className="block text-[11px] font-semibold text-gray-700 mb-1">
+                  <label className="block text-[13px] font-semibold text-gray-700 mb-1.5">
                     Full name
                   </label>
                   <input
                     type="text"
                     value={name}
                     onChange={(e) => setName(e.target.value)}
-                    className="w-full px-3 py-2.5 bg-[#eef2fc] border border-transparent rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:bg-white text-[14px]"
+                    className="w-full px-4 py-3.5 bg-[#eef2fc] border border-transparent rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:bg-white text-[16px]"
                     required
                     disabled={loading}
                     placeholder="Alice Smith"
@@ -181,14 +181,14 @@ export default function SignUpPage() {
                 </div>
 
                 <div>
-                  <label className="block text-[11px] font-semibold text-gray-700 mb-1">
+                  <label className="block text-[13px] font-semibold text-gray-700 mb-1.5">
                     Email
                   </label>
                   <input
                     type="email"
                     value={email}
                     onChange={(e) => setEmail(e.target.value)}
-                    className="w-full px-3 py-2.5 bg-[#eef2fc] border border-transparent rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:bg-white text-[14px]"
+                    className="w-full px-4 py-3.5 bg-[#eef2fc] border border-transparent rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:bg-white text-[16px]"
                     required
                     disabled={loading}
                     placeholder="alice@example.com"
@@ -196,14 +196,14 @@ export default function SignUpPage() {
                 </div>
 
                 <div>
-                  <label className="block text-[11px] font-semibold text-gray-700 mb-1">
+                  <label className="block text-[13px] font-semibold text-gray-700 mb-1.5">
                     Password
                   </label>
                   <input
                     type="password"
                     value={password}
                     onChange={(e) => setPassword(e.target.value)}
-                    className="w-full px-3 py-2.5 bg-[#eef2fc] border border-transparent rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:bg-white text-[14px]"
+                    className="w-full px-4 py-3.5 bg-[#eef2fc] border border-transparent rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:bg-white text-[16px]"
                     required
                     disabled={loading}
                     placeholder="Min. 8 characters"
@@ -213,13 +213,13 @@ export default function SignUpPage() {
                 <button
                   type="submit"
                   disabled={loading}
-                  className="w-full py-2.5 px-4 bg-[#0a0a0a] hover:bg-[#1a1a1a] text-white text-[14px] font-medium rounded-lg transition-colors disabled:opacity-50 mt-2 cursor-pointer"
+                  className="w-full py-3.5 px-4 bg-[#0a0a0a] hover:bg-[#1a1a1a] text-white text-[16px] font-medium rounded-lg transition-colors disabled:opacity-50 mt-2 cursor-pointer"
                 >
                   {loading ? 'Creating account...' : 'Create account'}
                 </button>
               </form>
 
-              <p className="text-center text-[13px] text-gray-500 mt-6">
+              <p className="text-center text-[15px] text-gray-500 mt-6">
                 Already have an account?{' '}
                 <Link href="/" className="font-semibold text-black hover:underline">
                   Sign in
