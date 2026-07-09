@@ -58,7 +58,7 @@ export default async function DashboardLayout({ children }: DashboardLayoutProps
 
       {/* Main Content Area */}
       <main className="flex-1 relative z-10 flex flex-col min-w-0 h-screen overflow-y-auto">
-        <div className="flex-1 p-6 md:p-10 max-w-[1440px] w-full mx-auto">
+        <div className="flex-1 p-6 md:p-10 max-w-[1600px] w-full mx-auto">
           {children}
         </div>
       </main>
