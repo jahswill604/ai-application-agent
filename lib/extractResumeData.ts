@@ -87,7 +87,7 @@ ${text}
   while (attempt <= 2) {
     try {
       const result = await ai.models.generateContent({
-        model: 'gemini-3.1-flash-lite',
+        model: process.env.GEMINI_MODEL ?? 'gemini-2.5-flash',
         contents: buildPrompt(rawText, attempt === 2),
         config: {
           responseMimeType: 'application/json',

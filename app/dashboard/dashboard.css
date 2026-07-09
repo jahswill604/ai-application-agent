@@ -8,6 +8,7 @@
   background: #0a0a12;
   color: #f1f1f5;
   font-family: var(--font-geist-sans), system-ui, sans-serif;
+  font-size: 0.9rem;
   overflow-x: hidden;
 }
 

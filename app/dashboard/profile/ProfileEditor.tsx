@@ -110,7 +110,17 @@ export default function ProfileEditor({ initialProfile }: ProfileEditorProps) {
 
   const handleContactChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target
-    setProfile(prev => ({ ...prev, contact_details: { ...prev.contact_details, [name]: value } }))
+    setProfile(prev => ({
+      ...prev,
+      contact_details: {
+        linkedin:  null,
+        github:    null,
+        website:   null,
+        languages: [],
+        ...prev.contact_details,
+        [name]: value,
+      },
+    }))
   }
 
   const handleSave = async (sectionName = 'info') => {

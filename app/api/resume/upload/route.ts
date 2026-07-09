@@ -131,7 +131,7 @@ export async function POST(req: Request) {
     for (let attempt = 1; attempt <= 2; attempt++) {
       try {
         const geminiResponse = await ai.models.generateContent({
-          model: 'gemini-3.1-flash-lite',
+          model: process.env.GEMINI_MODEL ?? 'gemini-2.5-flash',
           contents,
           config: {
             responseMimeType: 'application/json',
