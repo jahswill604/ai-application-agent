@@ -2,9 +2,9 @@ import { GoogleGenAI } from '@google/genai'
 import { ExtractedProfileSchema, type ExtractedProfile } from '@/types/profile'
 
 /**
- * Calls Gemini to extract ALL structured profile data from raw resume text.
- * Extracts: personal info, contact links, skills, work experience,
- * education, projects, certifications, and spoken languages.
+ * Extracts structured resume data from raw text.
+ *
+ * @returns A result containing the extracted profile data, a success flag, a partial flag, and an error message when extraction fails.
  */
 export async function extractResumeData(
   rawText: string
@@ -152,6 +152,11 @@ ${text}
   }
 }
 
+/**
+ * Creates an empty resume profile.
+ *
+ * @returns A fully shaped `ExtractedProfile` with `null` values and empty arrays.
+ */
 function getEmptyProfile(): ExtractedProfile {
   return {
     full_name: null,

@@ -15,6 +15,13 @@ interface SidebarNavProps {
   onItemClick?: () => void
 }
 
+/**
+ * Renders the dashboard sidebar navigation.
+ *
+ * @param isCollapsed - Controls the compact layout and hides item labels on smaller screens.
+ * @param onItemClick - Called when a navigation item is selected.
+ * @returns The sidebar navigation element.
+ */
 export default function SidebarNav({ isCollapsed = false, onItemClick }: SidebarNavProps) {
   const pathname = usePathname()
 

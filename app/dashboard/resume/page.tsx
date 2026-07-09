@@ -10,6 +10,13 @@ export const metadata = {
   description: 'Manage your uploaded resumes.',
 }
 
+/**
+ * Renders the authenticated resume dashboard.
+ *
+ * Displays the user's active resume details and download actions when a resume exists, or an empty state with an upload link when no active resume is found.
+ *
+ * @returns The rendered resume page content.
+ */
 export default async function ResumePage() {
   const supabase = await createClient()
 

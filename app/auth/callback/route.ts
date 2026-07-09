@@ -4,9 +4,12 @@ import { createClient } from '@/lib/supabase/server'
 import { redirect } from 'next/navigation'
 
 /**
- * OAuth callback handler.
- * Exchanges the `code` param for a Supabase session and redirects to /dashboard.
- * Also handles password reset tokens (type=recovery).
+ * Handles the Supabase OAuth callback and redirects after exchanging the authorization code.
+ *
+ * Redirects to the password reset page for recovery flows, to the requested `next` path on success,
+ * or to the home page with an authentication callback error when the code is missing or exchange fails.
+ *
+ * @param request - The incoming callback request.
  */
 export async function GET(request: NextRequest) {
   console.log('--- Auth Callback Initiated ---')

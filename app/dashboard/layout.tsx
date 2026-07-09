@@ -12,6 +12,11 @@ interface DashboardLayoutProps {
   children: React.ReactNode
 }
 
+/**
+ * Renders the dashboard layout for authenticated users with a completed resume upload.
+ *
+ * @param children - The page content to display within the dashboard layout.
+ */
 export default async function DashboardLayout({ children }: DashboardLayoutProps) {
   const supabase = await createClient()
 

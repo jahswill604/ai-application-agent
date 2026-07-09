@@ -1,11 +1,10 @@
 import { createClient } from '@supabase/supabase-js'
 
 /**
- * Creates a Supabase client using the SERVICE_ROLE key.
- * ⚠️ WARNING: This client bypasses Row Level Security (RLS).
- * Only use this in secure server environments (Server Actions, API Routes)
- * for actions that the regular user client cannot perform (e.g. administrative tasks,
- * system-level checks, or initial storage provisioning).
+ * Creates a Supabase service-role client for server-side access.
+ *
+ * @returns A Supabase client configured with the service role key.
+ * @throws Error if the Supabase URL or service role key environment variable is missing.
  */
 export function createServiceClient() {
   const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL

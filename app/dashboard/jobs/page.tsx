@@ -63,6 +63,9 @@ function formatCacheTime(iso: string | null): string {
 
 // ─── Main Page ────────────────────────────────────────────────────────────────
 
+/**
+ * Renders the jobs browsing page with targeted listings and application status counts.
+ */
 export default function JobsPage() {
   const supabase = createClient()
 
