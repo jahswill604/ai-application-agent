@@ -18,10 +18,10 @@ export default function SidebarBrand({ isCollapsed = false }: SidebarBrandProps)
       
       {/* Text brand name is always visible on mobile, responsive on desktop */}
       <div className={`transition-opacity duration-300 whitespace-nowrap ${isCollapsed ? 'md:hidden' : 'block'}`}>
-        <h1 className="text-sm font-bold tracking-tight text-white leading-none">
+        <h1 className="text-base font-bold tracking-tight text-white leading-none">
           AI Application Agent
         </h1>
-        <span className="text-[10px] text-primary font-medium tracking-wider uppercase">
+        <span className="text-[11px] text-primary font-medium tracking-wider uppercase">
           App Shell v1.0
         </span>
       </div>
