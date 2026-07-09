@@ -52,6 +52,12 @@ JSON STRUCTURE:
   }
 }`
 
+/**
+ * Processes an authenticated resume upload, extracts structured profile data, and stores the file and results.
+ *
+ * @param req - The incoming request containing the uploaded resume file in `multipart/form-data`.
+ * @returns A JSON response indicating success or an error status.
+ */
 export async function POST(req: Request) {
   try {
     const supabase = await createClient()

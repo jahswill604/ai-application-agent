@@ -5,6 +5,12 @@ interface ProfileCompletenessCardProps {
   profile: ExtractedProfile
 }
 
+/**
+ * Displays a profile strength card with an overall completeness score and section breakdowns.
+ *
+ * @param p - The extracted profile used to calculate the displayed scores.
+ * @returns The rendered profile completeness card.
+ */
 export default function ProfileCompletenessCard({ profile: p }: ProfileCompletenessCardProps) {
   const calcPersonal = () => {
     let s = 0

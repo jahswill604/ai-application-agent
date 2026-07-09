@@ -4,6 +4,9 @@ import { useState } from 'react'
 import Link from 'next/link'
 import { createClient } from '@/lib/supabase/client'
 
+/**
+ * Renders the sign-up page and handles email/password and Google OAuth account creation.
+ */
 export default function SignUpPage() {
   const [name, setName] = useState('')
   const [email, setEmail] = useState('')

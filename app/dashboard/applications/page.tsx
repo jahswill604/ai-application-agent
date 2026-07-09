@@ -5,6 +5,9 @@ export const metadata = {
   title: 'Applications — AI Application Agent',
 }
 
+/**
+ * Renders the Applications page with a status header and placeholder content.
+ */
 export default function ApplicationsPage() {
   return (
     <div className="space-y-6">

@@ -6,6 +6,9 @@ import { createClient } from '@/lib/supabase/client'
 import { SparklesIcon, FileTextIcon, LogOutIcon } from '@/components/icons'
 import { signOut } from '@/app/actions/auth'
 
+/**
+ * Renders the resume upload onboarding page.
+ */
 export default function ResumeUploadPage() {
   const [file, setFile] = useState<File | null>(null)
   const [dragActive, setDragActive] = useState(false)

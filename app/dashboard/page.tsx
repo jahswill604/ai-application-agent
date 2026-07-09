@@ -1,6 +1,11 @@
 import React from 'react'
 import { FolderIcon } from '@/components/icons'
 
+/**
+ * Renders the dashboard home page placeholder layout.
+ *
+ * @returns The dashboard home page content.
+ */
 export default function DashboardHomePage() {
   return (
     <div className="flex flex-col items-center justify-center min-h-[60vh] border border-zinc-200 bg-zinc-50/50 rounded-3xl p-8 text-center backdrop-blur-md">
