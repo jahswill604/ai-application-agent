@@ -64,6 +64,9 @@ const dummyJobs: Job[] = [
   }
 ]
 
+/**
+ * Renders the jobs browsing page with targeted listings and application status counts.
+ */
 export default function JobsPage() {
   return (
     <div className="space-y-6">

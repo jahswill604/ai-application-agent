@@ -5,6 +5,11 @@ interface SidebarBrandProps {
   isCollapsed?: boolean
 }
 
+/**
+ * Renders the sidebar brand header.
+ *
+ * @param isCollapsed - Controls the compact sidebar layout and desktop text visibility.
+ */
 export default function SidebarBrand({ isCollapsed = false }: SidebarBrandProps) {
   return (
     <div

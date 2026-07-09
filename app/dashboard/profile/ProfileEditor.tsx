@@ -10,12 +10,21 @@ interface ProfileEditorProps {
 
 type TabType = 'personal' | 'summary' | 'skills' | 'experience' | 'education' | 'projects' | 'certifications'
 
-// ─── Reusable Field Components ────────────────────────────────────────────────
+/**
+ * Renders a styled label for a form field.
+ *
+ * @param children - The label content.
+ */
 
 function FieldLabel({ children }: { children: React.ReactNode }) {
   return <label className="block text-xs font-semibold text-gray-500 uppercase tracking-wider mb-1.5">{children}</label>
 }
 
+/**
+ * Renders a styled text input.
+ *
+ * @param props - Standard input attributes to apply to the element.
+ */
 function TextInput({ ...props }: React.InputHTMLAttributes<HTMLInputElement>) {
   return (
     <input
@@ -25,6 +34,9 @@ function TextInput({ ...props }: React.InputHTMLAttributes<HTMLInputElement>) {
   )
 }
 
+/**
+ * Renders a styled textarea element.
+ */
 function TextArea({ ...props }: React.TextareaHTMLAttributes<HTMLTextAreaElement>) {
   return (
     <textarea
@@ -34,6 +46,12 @@ function TextArea({ ...props }: React.TextareaHTMLAttributes<HTMLTextAreaElement
   )
 }
 
+/**
+ * Renders a submit button with saving feedback.
+ *
+ * @param isSaving - Disables the button and shows the saving state when `true`
+ * @param label - The label to display when the button is not saving
+ */
 function SaveButton({ isSaving, label }: { isSaving: boolean; label: string }) {
   return (
     <button
@@ -75,7 +93,11 @@ const TABS: { id: TabType; label: string; icon: string }[] = [
   { id: 'certifications', label: 'Certifications', icon: '🏆' },
 ]
 
-// ─── Main Component ────────────────────────────────────────────────────────────
+/**
+ * Renders the profile editor for personal, summary, skills, experience, education, projects, and certifications.
+ *
+ * @param initialProfile - The profile values used to seed the editable form state
+ */
 
 export default function ProfileEditor({ initialProfile }: ProfileEditorProps) {
   const [profile, setProfile] = useState<ExtractedProfile>({

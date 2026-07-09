@@ -3,8 +3,15 @@ import { createClient } from '@/lib/supabase/server'
 import { ExtractedProfileSchema } from '@/types/profile'
 
 /**
- * PATCH /api/profile
- * Updates the profile of the authenticated user.
+ * Updates the authenticated user's profile.
+ *
+ * Validates the request body against `ExtractedProfileSchema` and stores the
+ * profile fields for the current user. Returns `401` when the request is not
+ * authenticated, `400` when validation fails, `500` when the update fails or an
+ * unexpected error occurs, and `200` with the updated profile on success.
+ *
+ * @param req - The incoming request.
+ * @returns A JSON response containing the update result.
  */
 export async function PATCH(req: NextRequest) {
   try {
@@ -79,8 +86,10 @@ export async function PATCH(req: NextRequest) {
 }
 
 /**
- * GET /api/profile
- * Returns the profile of the authenticated user.
+ * Fetches the authenticated user's profile.
+ *
+ * @param req - The incoming request.
+ * @returns A JSON response containing the user's profile, or an error response if authentication or retrieval fails.
  */
 export async function GET(req: NextRequest) {
   try {

@@ -10,6 +10,11 @@ export const metadata = {
   description: 'Manage your professional profile details.',
 }
 
+/**
+ * Renders the authenticated profile management page.
+ *
+ * Redirects to `/` when there is no authenticated user, and to `/onboarding/resume-upload` when no profile record exists.
+ */
 export default async function ProfilePage() {
   const supabase = await createClient()
 

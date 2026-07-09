@@ -11,6 +11,11 @@ const PROTECTED_PATHS = ['/dashboard', '/settings', '/profile']
  */
 const AUTH_PATHS = ['/', '/sign-up']
 
+/**
+ * Applies session-based redirects for protected and auth routes.
+ *
+ * @returns The session response, or a redirect response for protected routes without a user and auth pages visited by an authenticated user.
+ */
 export async function proxy(request: NextRequest) {
   const { pathname } = request.nextUrl
   const { supabaseResponse, user } = await updateSession(request)
